@@ -2,6 +2,8 @@ package com.recipes.recipelist.models;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class RecipeModel extends BaseEntity {
@@ -9,6 +11,10 @@ public class RecipeModel extends BaseEntity {
     private String name;
     private String time;
     private String rating;
+
+    @ManyToOne
+    @JoinColumn(name = "chef_id")
+    private Chef chef;
 
     public RecipeModel(){
 
@@ -19,6 +25,14 @@ public class RecipeModel extends BaseEntity {
         this.name = name;
         this.time = time;
         this.rating = rating;
+    }
+
+    public Chef getChef() {
+        return chef;
+    }
+
+    public void setChef(Chef chef) {
+        this.chef = chef;
     }
 
     public String getName() {
